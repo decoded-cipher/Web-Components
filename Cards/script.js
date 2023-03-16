@@ -9,6 +9,10 @@ template.innerHTML = `
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
             padding: 1rem;
             text-align: center;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         h3 {
@@ -16,13 +20,23 @@ template.innerHTML = `
             margin: 0 0 1rem 0;
         }
 
+        #dp-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .content {
+            margin: auto;
+        }
+
     </style>
             
-    <div class="card" style="display: flex; flex-direction: row; justify-content: space-between;">
+    <div class="card">
         <div class="image">
-            <img id="dp-image" style="width: 100px; height: 100px; border-radius: 50%;"/>
+            <img id="dp-image"/>
         </div>
-        <div class="content" style="margin: auto;">
+        <div class="content">
             <h3 id="title"></h3>
             <p id="description"></p>
         </div>
