@@ -18,9 +18,14 @@ template.innerHTML = `
 
     </style>
             
-    <div class="card">
-        <h3 name="title"></h3>
-        <p name="description"></p>
+    <div class="card" style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div class="image">
+            <img id="dp-image" style="width: 100px; height: 100px; border-radius: 50%;"/>
+        </div>
+        <div class="content" style="margin: auto;">
+            <h3 id="title"></h3>
+            <p id="description"></p>
+        </div>
     </div>
     
     `;
@@ -30,10 +35,13 @@ class CardComponent extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.cloneNode(true)); 
-        
-        this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
-        this.shadowRoot.querySelector('h3').style.color = this.getAttribute('color');
-        this.shadowRoot.querySelector('p').innerText = this.getAttribute('designation');
+    }
+
+    connectedCallback() {
+        this.shadowRoot.querySelector('#title').innerText = JSON.parse(this.getAttribute('data')).title;
+        this.shadowRoot.querySelector('#title').style.color = JSON.parse(this.getAttribute('data')).color;
+        this.shadowRoot.querySelector('#description').innerText = JSON.parse(this.getAttribute('data')).description;
+        this.shadowRoot.querySelector('#dp-image').src = JSON.parse(this.getAttribute('data')).image;
     }
 }
 
