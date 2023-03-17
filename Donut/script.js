@@ -12,8 +12,8 @@ class DonutCarousel extends HTMLElement {
     }
 
     slideCard = (image) => {
+        
         var donutCarousal = this.shadowRoot.querySelector('.donut-carousal');
-
         var slide = document.createElement('div');
         slide.classList.add('slide');
     
@@ -45,58 +45,32 @@ class DonutCarousel extends HTMLElement {
         slickThemeCSS.setAttribute("href", 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css');
         this.shadow.appendChild(slickThemeCSS);
 
-        var jqueryScript = document.createElement('script');
-        jqueryScript.setAttribute('type', 'text/javascript');
-        jqueryScript.setAttribute('src', 'https://code.jquery.com/jquery-1.11.0.min.js');
-        this.shadow.appendChild(jqueryScript);
-
-        var jqueryMigrate = document.createElement('script');
-        jqueryMigrate.setAttribute('type', 'text/javascript');
-        jqueryMigrate.setAttribute('src', 'https://code.jquery.com/jquery-migrate-1.2.1.min.js');
-        this.shadow.appendChild(jqueryMigrate);
-
-        jqueryMigrate.onload = () => {  
-            var slickScript = document.createElement('script');
-            slickScript.setAttribute('type', 'text/javascript');
-            slickScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js');
-            this.shadow.appendChild(slickScript);
-
-            slickScript.onload = () => {
-                var slickOptions = document.createElement('script');
-                slickOptions.setAttribute('type', 'text/javascript');
-                slickOptions.innerHTML = `
-                    $(document).ready(() => {
-                        $('.donut-carousal').slick({
-                            centerMode: true,
-                            centerPadding: '60px',
-                            slidesToShow: 3,
-                            responsive: [
-                                {
-                                    breakpoint: 768,
-                                    settings: {
-                                        arrows: false,
-                                        centerMode: true,
-                                        centerPadding: '40px',
-                                        slidesToShow: 3
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        arrows: false,
-                                        centerMode: true,
-                                        centerPadding: '40px',
-                                        slidesToShow: 1
-                                    }
-                                }
-                            ]
-                        });
-                    });
-
-                `;
-                this.shadow.appendChild(slickOptions);
-            }
-        };
+        var donutCarousal = this.shadowRoot.querySelector('.donut-carousal');
+        $(donutCarousal).slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
     }
 }
 
