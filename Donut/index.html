@@ -19,13 +19,17 @@
     
     <script>
 
-        var thumbnail = ["https://dummyimage.com/300.png/c7f/fff", "https://dummyimage.com/300.png/83f/fff", "https://dummyimage.com/300.png/09f/fff", "https://dummyimage.com/300.png/c73/fff", "https://dummyimage.com/300.png/d67/fff"];
+        var images = ["/assets/carousal_01.png", "/assets/carousal_01.png", "/assets/carousal_01.png", "/assets/carousal_01.png", "/assets/carousal_01.png", "/assets/carousal_01.png"];
+        var thumbnails = ["/assets/thumbnail/1.png", "/assets/thumbnail/2.png", "/assets/thumbnail/3.png", "/assets/thumbnail/4.png", "/assets/thumbnail/5.png", "/assets/thumbnail/6.png"];
 
         var Carousel = document.createElement("donut-carousal");
-        Carousel.setAttribute("thumbnail", JSON.stringify(thumbnail));
+        Carousel.setAttribute("images", JSON.stringify(images));
+        Carousel.setAttribute("thumbnails", JSON.stringify(thumbnails));
+
         document.body.appendChild(Carousel);
 
     </script>
+    
 
 </body>
 </html>

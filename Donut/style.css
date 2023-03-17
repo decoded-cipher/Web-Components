@@ -1,0 +1,36 @@
+.__thumbnail_image__ {
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10%;
+    margin: auto;
+}
+
+.__thumbnail_image__ {
+    position: relative;
+}
+
+.__thumbnail_image__ svg {
+    position: relative;
+}
+
+.__thumbnail_image__ img {
+    width: auto;
+    height: 60px;
+    object-fit: fit;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-38%,-66%);
+}
+
+
+.donut-thumbs {
+    width: 450px;
+    height: 100px;
+
+    object-fit: cover;
+}
+
+
