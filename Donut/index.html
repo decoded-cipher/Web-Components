@@ -6,12 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doughnut Carousal</title>
 
-    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
 </head>
 <body>
 
-    <DonutCarousel></DonutCarousel>
+    <!-- <donut-carousal></donut-carousal> -->
     
+    <script>
+
+        var thumbnail = ["https://dummyimage.com/300.png/c7f/fff", "https://dummyimage.com/300.png/83f/fff", "https://dummyimage.com/300.png/09f/fff", "https://dummyimage.com/300.png/c73/fff", "https://dummyimage.com/300.png/d67/fff"];
+
+        var Carousel = document.createElement("donut-carousal");
+        Carousel.setAttribute("thumbnail", JSON.stringify(thumbnail));
+        document.body.appendChild(Carousel);
+
+    </script>
+
 </body>
 </html>
