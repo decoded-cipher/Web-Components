@@ -1,0 +1,140 @@
+{
+  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "name": "Donut Carousel",
+  "type": "donut-carousel",
+  "files": {
+    "js": [
+      "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+      "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+    ]
+  },
+  "events": [],
+  "methods": [
+    {
+      "name": "next",
+      "label": "Next",
+      "description": "move to next card"
+    },
+    {
+      "name": "prev",
+      "label": "Previous",
+      "description": "move to previous card"
+    }
+  ],
+  "tagName": "donut-carousel",
+  "version": 2,
+  "category": "Galleries",
+
+
+  "attributes": [
+    {
+      "name": "donut-slide-images",
+      "type": "multiple-file",
+      "asset": true,
+      "label": "Carousel Images",
+      "accept": "image/*",
+      "description": "Donut slide images"
+    },
+    {
+      "name": "donut-thumbnail-images",
+      "type": "multiple-file",
+      "asset": true,
+      "label": "Thumbnail Images",
+      "accept": "image/*",
+      "description": "Donut thumbnail images"
+    },
+    {
+      "name": "donut-background-colour",
+      "type": "color",
+      "label": "Thumbnail Background Colour",
+      "bindable": true,
+      "description": "Color of the Thumbnail Background",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#666666"
+    },
+    {
+      "name": "donut-background-opacity",
+      "type": "number",
+      "label": "Thumbnail Background Opacity",
+      "bindable": true,
+      "description": "Background Opacity of the Thumbnail",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "0.5"
+    },
+    {
+      "name": "donut-slide-width",
+      "type": "number",
+      "label": "Slide Width",
+      "bindable": true,
+      "description": "Width of the slide image",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "255px"
+    },
+    {
+      "name": "donut-slide-height",
+      "type": "number",
+      "label": "Slide Height",
+      "bindable": true,
+      "description": "Height of the slide image",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "auto"
+    },
+    {
+      "name": "donut-slide-border-radius",
+      "type": "number",
+      "label": "Slide Border Radius",
+      "bindable": true,
+      "description": "Border Radius of the slide image",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "10px"
+    },
+    {
+      "name": "donut-thumb-autoplay",
+      "type": "boolean",
+      "label": "Carousal Autoplay",
+      "required": false,
+      "description": "Enable carousal Autoplay",
+      "defaultValue": true
+    },
+    {
+      "name": "donut-thumb-autoplayInterval",
+      "type": "number",
+      "label": "Autoplay Interval",
+      "bindable": true,
+      "description": "Autoplay Interval",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "3000"
+    },
+    {
+      "name": "donut-thumb-autoplayDirection",
+      "type": "string",
+      "label": "Autoplay Direction",
+      "description": "Autoplay Direction",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Right", "Left"]
+      },
+      "defaultValue": "Right"
+    }
+  ],
+
+
+  "description": "Donut Carousel",
+  "externalScripts": [
+    "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+    "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+  ],
+  "customElementsVersion": 1
+}

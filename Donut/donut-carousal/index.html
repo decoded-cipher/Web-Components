@@ -17,19 +17,20 @@
         var images = ["/assets/image/1.png", "/assets/image/2.png", "/assets/image/3.png", "/assets/image/4.png", "/assets/image/5.png", "/assets/image/6.png", "/assets/image/7.png", "/assets/image/8.png", "/assets/image/9.png"];
         var thumbnails = ["./assets/thumbnail/1.png", "./assets/thumbnail/2.png", "./assets/thumbnail/3.png", "./assets/thumbnail/4.png", "./assets/thumbnail/5.png", "./assets/thumbnail/6.png","./assets/thumbnail/7.png","./assets/thumbnail/8.png","./assets/thumbnail/9.png"];
 
-        var Carousel = document.createElement("donut-carousal");
+        var Carousel = document.createElement("donut-carousel");
 
-        Carousel.setAttribute("images", JSON.stringify(images));
-        Carousel.setAttribute("thumbnails", JSON.stringify(thumbnails));
-        Carousel.setAttribute("bgColor", "#666666");
-        Carousel.setAttribute("bgOpacity", "0.8");
+        Carousel.setAttribute("donut-slide-images", JSON.stringify(images));
+        Carousel.setAttribute("donut-thumb-images", JSON.stringify(thumbnails));
+        Carousel.setAttribute("donut-background-colour", "#655666");
+        Carousel.setAttribute("donut-background-opacity", "0.8");
+        
+        Carousel.setAttribute("donut-slide-width", "255px");
+        Carousel.setAttribute("donut-slide-height", "auto");
+        Carousel.setAttribute("donut-slide-border-radius", "25px");
 
-        Carousel.setAttribute("width", "255px");
-        Carousel.setAttribute("height", "auto");
-
-        Carousel.setAttribute("autoplay", "true");
-        Carousel.setAttribute("autoplayInterval", "3000");
-        Carousel.setAttribute("autoplayDirection", "right");
+        Carousel.setAttribute("donut-thumb-autoplay", "true");
+        Carousel.setAttribute("donut-thumb-autoplayInterval", "3000");
+        Carousel.setAttribute("donut-thumb-autoplayDirection", "right");
 
         document.body.appendChild(Carousel);
 

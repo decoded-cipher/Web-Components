@@ -55,18 +55,19 @@ class DonutCarousel extends HTMLElement {
     
     connectedCallback() {
         
-        this.images = JSON.parse(this.getAttribute('images'));
-        this.fullArray = JSON.parse(this.getAttribute('thumbnails'));
+        this.images = JSON.parse(this.getAttribute('donut-slide-images'));
+        this.fullArray = JSON.parse(this.getAttribute('donut-thumb-images'));
         
-        this.bgColor = this.getAttribute('bgColor');
-        this.bgOpacity = this.getAttribute('bgOpacity');
+        this.bgColor = this.getAttribute('donut-background-colour');
+        this.bgOpacity = this.getAttribute('donut-background-opacity');
 
-        this.width = this.getAttribute('width');
-        this.height = this.getAttribute('height');
+        this.width = this.getAttribute('donut-slide-width');
+        this.height = this.getAttribute('donut-slide-height');
+        this.borderRadius = this.getAttribute('donut-slide-border-radius');
 
-        this.autoplay = this.getAttribute('autoplay');
-        this.autoplayInterval = this.getAttribute('autoplayInterval');
-        this.autoplayDirection = this.getAttribute('autoplayDirection');
+        this.autoplay = this.getAttribute('donut-thumb-autoplay');
+        this.autoplayInterval = this.getAttribute('donut-thumb-autoplayInterval');
+        this.autoplayDirection = this.getAttribute('donut-thumb-autoplayDirection');
         
         this.slidesArray = this.fullArray.slice(0, 8);
         console.log(this.slidesArray);
@@ -133,7 +134,7 @@ class DonutCarousel extends HTMLElement {
             }
 
             var previewImage = this.shadowRoot.querySelector("#previewImage");
-            previewImage.style = `width: ${this.width}; height: ${this.height};`;
+            previewImage.style = `width: ${this.width}; height: ${this.height}; border-radius: ${this.borderRadius};`;
             previewImage.src = this.images[this.activeSlide];
         })
 
@@ -272,4 +273,4 @@ class DonutCarousel extends HTMLElement {
     }
 }
 
-window.customElements.define('donut-carousal', DonutCarousel);
+window.customElements.define('donut-carousel', DonutCarousel);
