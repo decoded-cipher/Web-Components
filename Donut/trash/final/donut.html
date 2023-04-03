@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        
+        var fullArray = ["./assets/thumbnail/1.png", "./assets/thumbnail/2.png", "./assets/thumbnail/3.png", "./assets/thumbnail/4.png", "./assets/thumbnail/5.png", "./assets/thumbnail/6.png","./assets/thumbnail/7.png","./assets/thumbnail/8.png","./assets/thumbnail/9.png"];
+        var transforms = [
+            `translate(-100%, 0%)`,
+            `translate(-100%, -50%)`,
+            `translate(-100%, -90%)`,
+            `translate(-50%, -100%)`,
+            `translate(0%, -100%)`,
+            `translate(0%, -50%)`,
+            `translate(0%, 0%)`,
+            `translate(-50%, 0%)`,
+        ]
+        var styles = [
+            `translate(-97px, 26px) rotate(226deg)`,
+            `translate(-119px, -33px) rotate(270deg)`,
+            `translate(-92px, -92px) rotate(315deg)`,
+            `translate(-32px, -115px) rotate(0deg)`,
+            `translate(27px, -89px) rotate(44deg)`,
+            `translate(50px, -27px) rotate(90deg)`,
+            `translate(23px, 31px) rotate(135deg)`,
+            `translate(-37px, 54px) rotate(180deg)`
+        ];
+        var slidesArray = fullArray.slice(0, 8);
+
+        var firstSlide ={}, lastSlide = {};
+        var activeSlide = 3;
+
+        var currSlide = 0;
+        var currAngle = 0;
+
+        //create base
+        var base = document.createElement("div");
+        base.classList.add("base");
+        base.style = "width: 250px; height: 175px; position: relative;";
+        base.style.overflow = "hidden";
+        document.body.appendChild(base);
+
+        //create cartwheel
+        var cartwheel = document.createElement("div");
+        cartwheel.classList.add("cartwheel");
+        cartwheel.style = "width: 250px;top:50px; height: 250px; background-color: white; border-radius: 50%; position: relative;";
+        base.appendChild(cartwheel);
+
+
+        var generateRandomColor = () => {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        //generate slide
+        function generateSildes(){
+            //create a middle point
+            var middlePoint = document.createElement("div");
+            middlePoint.classList.add("middlePoint");
+            middlePoint.style = "width: 20px; height: 20px; border-radius: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);";
+            cartwheel.appendChild(middlePoint);
+
+            //create slides
+            slidesArray.forEach((slide, index) => {
+
+                //create slide middle point
+                var slideMiddle = document.createElement("div");
+                slideMiddle.id = "slideMiddle_" + index;
+                slideMiddle.style = "width: 20px; height: 20px; border-radius: 50%; position: absolute; left: 50%; top: 50%;transform: translate(-50%, -50%);";
+                middlePoint.appendChild(slideMiddle);
+
+                var slide = document.createElement("div");
+                slide.id = "slide_" + index;
+                slide.innerHTML= `<svg width="88" height="78" viewBox="0 0 88 78" xmlns="http://www.w3.org/2000/svg"><path d="M55.5347 77.6985C46.2088 74.7707 35.958 74.5447 25.9995 77.5924L0.53824 7.00727C30.0017 -2.97212 60.7005 -1.32131 87.5434 9.56775L55.5347 77.6985Z" fill="${generateRandomColor()}"/>`;
+                slide.style.transform = styles[index];
+                slide.style.position = "absolute";
+                
+                //create image
+                var image = document.createElement("img");
+                image.src = fullArray[index];
+                image.style = "width: 60%; height: auto;position: absolute; left: 18%; top: 8%;";
+                slide.appendChild(image);
+                slideMiddle.appendChild(slide);
+                firstSlide ={
+                    id: 0,
+                    index : 0,
+                }
+                lastSlide = {
+                    id : 6,
+                    index : 6,
+                }
+            })
+
+        }
+        generateSildes();
+
+        //create next button
+        var nextButton = document.createElement("button");
+        nextButton.innerHTML = "Next";
+        nextButton.style = "position: absolute; top: 10px; right: 0; transform: translate(0, -50%);";
+        nextButton.onclick = next;
+        base.appendChild(nextButton);
+
+        //create prev button
+        var prevButton = document.createElement("button");
+        prevButton.innerHTML = "Prev";
+        prevButton.onclick = prev;
+        prevButton.style = "position: absolute; top: 10px; left: 0; transform: translate(0, -50%);";
+        base.appendChild(prevButton);
+
+        //create next function
+        function next(){
+            currSlide++;
+            currAngle += 45;
+            if(currSlide>7){
+                currSlide = 0;
+            }
+
+            firstSlide.id--;
+            if(firstSlide.id<0){
+                firstSlide.id = fullArray.length-1;
+            }
+
+            firstSlide.index--;
+            if(firstSlide.index<0){
+                firstSlide.index = 7;
+            }
+
+            lastSlide.id--;
+            if(lastSlide.id<0){
+                lastSlide.id = fullArray.length-1;
+            }
+
+            lastSlide.index--;
+            if(lastSlide.index<0){
+                lastSlide.index = 7;
+            }
+
+
+            //for top slide to move back to original position
+            var prevMiddle = document.querySelector("#slideMiddle_" + activeSlide);
+            prevMiddle.style.transition = "all 0.5s ease-in-out";     
+            prevMiddle.style.transform = `translate(-50%, -50%) rotate(0deg)`;   
+
+            var firstChild = document.querySelector("#slide_" + firstSlide.index);
+            firstChild.children[1].src = fullArray[firstSlide.id];
+
+            middlePoint = document.querySelector(".middlePoint");
+            middlePoint.style.transition = "all 0.5s ease-in-out";
+            middlePoint.style.transform = `translate(-50%, -50%) rotate(${currAngle}deg)`;
+
+            activeSlide--;
+            if(activeSlide<0){
+                activeSlide = 7;
+            }
+            currMiddle = document.querySelector("#slideMiddle_" + activeSlide);
+            currMiddle.style.transition = "all 0.5s ease-in-out";
+            currMiddle.style.transform = transforms[activeSlide];
+            
+        }
+
+        //create prev function
+        function prev(){
+            currSlide--;
+            currAngle -= 45;
+            if(currSlide<0){
+                currSlide = 7;
+            }
+
+            firstSlide.id++;
+            if(firstSlide.id>fullArray.length-1){
+                firstSlide.id = 0;
+            }
+
+            firstSlide.index++;
+            if(firstSlide.index>7){
+                firstSlide.index = 0;
+            }
+
+            lastSlide.id++;
+            if(lastSlide.id>fullArray.length-1){
+                lastSlide.id = 0;
+            }
+
+            lastSlide.index++;
+            if(lastSlide.index>7){
+                lastSlide.index = 0;
+            }
+
+            //for top slide to move back to original position
+            var prevMiddle = document.querySelector("#slideMiddle_" + activeSlide);
+            prevMiddle.style.transition = "all 0.5s ease-in-out";     
+            prevMiddle.style.transform = `translate(-50%, -50%) rotate(0deg)`;   
+
+            var lastChild = document.querySelector("#slide_" + lastSlide.index);
+            lastChild.children[1].src = fullArray[lastSlide.id];
+
+            middlePoint = document.querySelector(".middlePoint");
+            middlePoint.style.transition = "all 0.5s ease-in-out";
+            middlePoint.style.transform = `translate(-50%, -50%) rotate(${currAngle}deg)`;
+
+            activeSlide++;
+            if(activeSlide>7){
+                activeSlide = 0;
+            }
+            console.log(activeSlide);
+            currMiddle = document.querySelector("#slideMiddle_" + activeSlide);
+            console.log(currMiddle);
+            currMiddle.style.transition = "all 0.5s ease-in-out";
+            currMiddle.style.transform = transforms[activeSlide];
+
+        }
+    </script>
+    
+</body>
+</html>

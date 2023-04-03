@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doughnut Carousal</title>
+    
+    <script src="script.js"></script>
+
+</head>
+<body>
+
+    
+    <script>
+
+        var images = ["/assets/image/1.png", "/assets/image/2.png", "/assets/image/3.png", "/assets/image/4.png", "/assets/image/5.png", "/assets/image/6.png", "/assets/image/7.png", "/assets/image/8.png", "/assets/image/9.png"];
+        var thumbnails = ["./assets/thumbnail/1.png", "./assets/thumbnail/2.png", "./assets/thumbnail/3.png", "./assets/thumbnail/4.png", "./assets/thumbnail/5.png", "./assets/thumbnail/6.png","./assets/thumbnail/7.png","./assets/thumbnail/8.png","./assets/thumbnail/9.png"];
+
+        var Carousel = document.createElement("donut-carousal");
+
+        Carousel.setAttribute("images", JSON.stringify(images));
+        Carousel.setAttribute("thumbnails", JSON.stringify(thumbnails));
+        Carousel.setAttribute("bgColor", "#666666");
+        Carousel.setAttribute("bgOpacity", "0.8");
+
+        Carousel.setAttribute("width", "255px");
+        Carousel.setAttribute("height", "auto");
+
+        Carousel.setAttribute("autoplay", "true");
+        Carousel.setAttribute("autoplayInterval", "3000");
+        Carousel.setAttribute("autoplayDirection", "right");
+
+        document.body.appendChild(Carousel);
+
+    </script>
+    
+
+</body>
+</html>
