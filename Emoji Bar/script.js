@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 template.innerHTML = `
-    <div class="emojiBar__container">
-        <div class="emojiBar__emoji" style="display: flex; justify-content: space-around; position: absolute; bottom: 10px;"></div>
+    <div class="emojibar-container">
+        <div class="emojibar-emoji" style="display: flex; justify-content: space-around; position: absolute; bottom: 10px;"></div>
     </div>
 `;
 
@@ -11,7 +11,7 @@ class EmojiBar extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
         this.shadow.appendChild(template.content.cloneNode(true));
 
-        this.emojiBar = this.shadow.querySelector('.emojiBar__emoji');
+        this.emojiBar = this.shadow.querySelector('.emojibar-emoji');
         
         this.modernEmoji = ["/assets/modern/1.svg", "/assets/modern/2.svg", "/assets/modern/3.svg", "/assets/modern/4.svg", "/assets/modern/5.svg", "/assets/modern/6.svg", "/assets/modern/7.svg"];
         this.classicEmoji = ["/assets/classic/1.svg", "/assets/classic/2.svg", "/assets/classic/3.svg", "/assets/classic/4.svg", "/assets/classic/5.svg", "/assets/classic/6.svg", "/assets/classic/7.svg"];
@@ -20,24 +20,24 @@ class EmojiBar extends HTMLElement {
     
     connectedCallback() {
 
-        this.emojiType = this.getAttribute('emojiBar__type');
-        this.backgroundColor = this.getAttribute('emojiBar__backgroundColor');
-        this.backgroundOpacity = this.getAttribute('emojiBar__bgOpacity');
+        this.emojiType = this.getAttribute('emojibar-type');
+        this.backgroundColor = this.getAttribute('emojibar-backgroundColor');
+        this.backgroundOpacity = this.getAttribute('emojibar-bgOpacity') <= 1 ? this.getAttribute('emojibar-bgOpacity') : this.getAttribute('emojibar-bgOpacity') / 100;
         
-        this.emojiBar.style.width = this.getAttribute('emojiBar__width');
-        this.emojiBar.style.height = this.getAttribute('emojiBar__height');
-        this.emojiBar.style.borderRadius = this.getAttribute('emojiBar__borderRadius');
-        this.emojiBar.style.padding = this.getAttribute('emojiBar__padding');
+        this.emojiBar.style.width = this.getAttribute('emojibar-width') + "px";
+        this.emojiBar.style.height = this.getAttribute('emojibar-height') == null ? "auto" : this.getAttribute('emojibar-height') + "px";
+        this.emojiBar.style.borderRadius = this.getAttribute('emojibar-borderRadius') + "px";
+        this.emojiBar.style.padding = this.getAttribute('emojibar-offsetY') + "px " + this.getAttribute('emojibar-offsetX') + "px";
 
-        this.emojiSize = this.getAttribute('emojiBar__emojiSize');
-        this.intensity = this.getAttribute('emojiBar__intensity');
+        this.emojiSize = this.getAttribute('emojibar-emojiSize') + "px";
+        this.intensity = this.getAttribute('emojibar-intensity');
 
 
         switch (this.emojiType) {
-            case 'modern':
+            case 'Modern':
                 this.emojiArray = this.modernEmoji;
                 break;
-            case 'classic':
+            case 'Classic':
                 this.emojiArray = this.classicEmoji;
                 break;
             default:
@@ -66,7 +66,7 @@ class EmojiBar extends HTMLElement {
             });
 
             emoji.addEventListener('click', () => {
-                this.generateBubbles(emoji, this.intensity);
+                this.generateBubbles(emoji);
             });
 
         }
@@ -78,15 +78,15 @@ class EmojiBar extends HTMLElement {
 
         if (value.includes('rgb')) {
             return value.replace(')', `, ${alpha})`).replace('(', 'a(');
+        } else {
+            let hex = value.replace('#', '');
+            let r = parseInt(hex.substring(0, 2), 16);
+            let g = parseInt(hex.substring(2, 4), 16);
+            let b = parseInt(hex.substring(4, 6), 16);
+
+            let result = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+            return result;
         }
-
-        let hex = value.replace('#', '');
-        let r = parseInt(hex.substring(0, 2), 16);
-        let g = parseInt(hex.substring(2, 4), 16);
-        let b = parseInt(hex.substring(4, 6), 16);
-
-        let result = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
-        return result;
     }
 
 
@@ -127,20 +127,20 @@ class EmojiBar extends HTMLElement {
     }
 
 
-    generateBubbles = (emoji, intensity) => {
+    generateBubbles = (emoji) => {
         
-        switch (intensity) {
-            case 'low':
+        switch (this.intensity) {
+            case 'Low':
                 for (let i = 0; i < 1; i++) {
                     this.bubbleAnimation(emoji);
                 }
                 break;
-            case 'medium':
+            case 'Medium':
                 for (let i = 0; i < 3; i++) {
                     this.bubbleAnimation(emoji);
                 }
                 break;
-            case 'high':
+            case 'High':
                 for (let i = 0; i < 5; i++) {
                     this.bubbleAnimation(emoji);
                 }

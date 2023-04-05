@@ -14,17 +14,19 @@
 
         var emojiBar = document.createElement("emoji-bar");
 
-        emojiBar.setAttribute("emojiBar__type", "classic");
-        emojiBar.setAttribute("emojiBar__backgroundColor", "#666666");
-        emojiBar.setAttribute("emojiBar__bgOpacity", "0.5");
+        emojiBar.setAttribute("emojibar-type", "Modern");
+        emojiBar.setAttribute("emojibar-backgroundColor", "#666666");
+        emojiBar.setAttribute("emojibar-bgOpacity", 50);
 
-        emojiBar.setAttribute("emojiBar__width", "500px");
-        emojiBar.setAttribute("emojiBar__height", "auto");
-        emojiBar.setAttribute("emojiBar__borderRadius", "12px");
-        emojiBar.setAttribute("emojiBar__padding", "6px 32px");
+        emojiBar.setAttribute("emojibar-width", 500);
+        emojiBar.setAttribute("emojibar-height", "auto");
+        emojiBar.setAttribute("emojibar-borderRadius", 12);
 
-        emojiBar.setAttribute("emojiBar__emojiSize", "45px");
-        emojiBar.setAttribute("emojiBar__intensity", "low");
+        emojiBar.setAttribute("emojibar-offsetY", 6);
+        emojiBar.setAttribute("emojibar-offsetX", 32);
+
+        emojiBar.setAttribute("emojibar-emojiSize", 45);
+        emojiBar.setAttribute("emojibar-intensity", "Medium");
 
         document.body.appendChild(emojiBar);
 
