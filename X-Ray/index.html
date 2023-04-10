@@ -36,20 +36,20 @@
         ];
 
         var xRay = document.createElement("adctv-xray");
-        xRay.setAttribute("thumbnails", JSON.stringify(thumbnails));
-        xRay.setAttribute("previews", JSON.stringify(previews));
+        xRay.setAttribute("xray-thumbnails", JSON.stringify(thumbnails));
+        xRay.setAttribute("xray-previews", JSON.stringify(previews));
 
-        xRay.setAttribute("slidesToShow", 4);
+        xRay.setAttribute("xray-slidesToShow", 5);
 
-        xRay.setAttribute("width", "auto");
-        xRay.setAttribute("height", "auto");
+        xRay.setAttribute("xray-width", 800);
+        xRay.setAttribute("xray-height", "auto");
 
-        xRay.setAttribute("autoplay", "false");
-        xRay.setAttribute("autoplayDirection", "left");
-        xRay.setAttribute("autoplayInterval", 2500);
+        xRay.setAttribute("xray-autoplay", "false");
+        xRay.setAttribute("xray-autoplayDirection", "left");
+        xRay.setAttribute("xray-autoplayInterval", 2500);
 
-        xRay.setAttribute("previewPosition", "bottom");
-        xRay.setAttribute("xRayDirection", "horizontal");
+        xRay.setAttribute("xray-previewPosition", "bottom");
+        xRay.setAttribute("xray-direction", "horizontal");
         
         document.body.appendChild(xRay);
 

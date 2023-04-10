@@ -1,0 +1,113 @@
+{
+  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "name": "Adctv X-Ray",
+  "type": "adctv-xray",
+  "files": {
+    "js": [
+      "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+      "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+    ]
+  },
+  "events": [],
+  "methods": [
+    {
+      "name": "next",
+      "label": "Next",
+      "description": "move to next slide"
+    },
+    {
+      "name": "prev",
+      "label": "Previous",
+      "description": "move to previous slide"
+    }
+  ],
+  "tagName": "adctv-xray",
+  "version": 2,
+  "category": "",
+  "attributes": [
+    {
+      "name": "xray-thumbnails",
+      "type": "multiple-file",
+      "asset": true,
+      "label": "Thumbnail Images",
+      "accept": "image/*",
+      "description": "X-Ray Thumbnail images"
+    },
+    {
+      "name": "xray-previews",
+      "type": "multiple-file",
+      "asset": true,
+      "label": "Preview Images",
+      "accept": "image/*",
+      "description": "X-Ray Preview images"
+    },
+    {
+      "min": 3,
+      "name": "xray-slidesToShow",
+      "type": "number",
+      "label": "Slides to show",
+      "description": "Number of slides to show at a time",
+      "defaultValue": 4
+    },
+    {
+      "min": 100,
+      "name": "xray-width",
+      "type": "number",
+      "label": "Width",
+      "description": "Width of the X-Ray Component",
+      "defaultValue": "auto"
+    },
+    {
+      "min": 100,
+      "name": "xray-height",
+      "type": "number",
+      "label": "Height",
+      "description": "Height of the X-Ray Component",
+      "defaultValue": "auto"
+    },
+    {
+      "name": "xray-autoplay",
+      "type": "boolean",
+      "label": "Autoplay",
+      "required": false,
+      "description": "Autoplay the X-Ray Carousel",
+      "defaultValue": false
+    },
+    {
+      "min": 100,
+      "name": "xray-autoplayInterval",
+      "type": "number",
+      "label": "Autoplay Interval",
+      "description": "X-Ray Autoplay Interval",
+      "defaultValue": 3000
+    },
+    {
+      "name": "xray-previewPosition",
+      "type": "string",
+      "label": "Preview Position",
+      "description": "Position of the Preview Image",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Top", "Center", "Bottom"]
+      },
+      "defaultValue": "Top"
+    },
+    {
+      "name": "xray-direction",
+      "type": "string",
+      "label": "X-Ray Direction",
+      "description": "Direction of the X-Ray Carousel",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Vertical", "Horizontal"]
+      },
+      "defaultValue": "Horizontal"
+    }
+  ],
+  "description": "ADCTV X-Ray Carousel",
+  "externalScripts": [
+    "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+    "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+  ],
+  "customElementsVersion": 1
+}

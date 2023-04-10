@@ -1,6 +1,8 @@
 const template = document.createElement('template');
 template.innerHTML = `
-    <div class="xray-container" style="display: flex; flex-direction: row; overflow: hidden; position: relative;">
+    <div class="xray-wrapper">
+        <div class="xray-container" style="display: flex; flex-direction: row; overflow: hidden; position: relative;">
+    </div>
 `;
 
 class Xray extends HTMLElement {
@@ -9,6 +11,7 @@ class Xray extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
         this.shadow.appendChild(template.content.cloneNode(true));
         
+        this.xrayWrapper = this.shadow.querySelector('.xray-wrapper');
         this.xrayContainer = this.shadow.querySelector('.xray-container');
 
         this.startSlideIndex = 0;
@@ -20,8 +23,8 @@ class Xray extends HTMLElement {
     
     connectedCallback() {
 
-        var thumbnails = JSON.parse(this.getAttribute('thumbnails'));
-        var previews = JSON.parse(this.getAttribute('previews'));
+        var thumbnails = JSON.parse(this.getAttribute('xray-thumbnails'));
+        var previews = JSON.parse(this.getAttribute('xray-previews'));
 
         for (var i = 0; i < previews.length; i++) {
             this.fullArray.push({
@@ -30,31 +33,31 @@ class Xray extends HTMLElement {
             });
         }
         
-        var slidesToShow = this.getAttribute('slidesToShow');
+        var slidesToShow = this.getAttribute('xray-slidesToShow');
         
-        this.autoplay = this.getAttribute('autoplay') || "false";
-        this.autoplayDirection = this.getAttribute('autoplayDirection') == 'left' ? 'left' : 'right';
+        this.autoplay = this.getAttribute('xray-autoplay') || "false";
+        this.autoplayDirection = this.getAttribute('xray-direction') == 'left' ? 'left' : 'right';
 
-        this.autoplayInterval = this.getAttribute('autoplayInterval') || 3000;
+        this.autoplayInterval = this.getAttribute('xray-autoplayInterval') || 3000;
         if (this.autoplayInterval < 10) {
             this.autoplayInterval = this.autoplayInterval * 1000;
         }
         
-        this.xrayContainer.style.width = this.getAttribute('width') == 'auto' ? 'auto' : this.getAttribute('width') + 'px';
-        this.xrayContainer.style.height = this.getAttribute('height') == 'auto' ? 'auto' : this.getAttribute('height') + 'px';
+        this.xrayWrapper.style.width = this.getAttribute('xray-width') == 'auto' ? 'auto' : this.getAttribute('xray-width') + 'px';
+        this.xrayWrapper.style.height = this.getAttribute('xray-height') == 'auto' ? 'auto' : this.getAttribute('xray-height') + 'px';
 
-        this.getAttribute('xRayDirection') == 'vertical' ? this.xrayContainer.style.flexDirection = 'column' : this.xrayContainer.style.flexDirection = 'row';
+        this.getAttribute('xray-direction') == 'Vertical' ? this.xrayContainer.style.flexDirection = 'column' : this.xrayContainer.style.flexDirection = 'row';
 
 
-        this.previewPosition = this.getAttribute('previewPosition') || 'top';
+        this.previewPosition = this.getAttribute('xray-previewPosition') || 'Top';
         switch (this.previewPosition) {
-            case 'top':
+            case 'Top':
                 this.xrayContainer.style.alignItems = 'flex-end';
                 break;
-            case 'center':
+            case 'Center':
                 this.xrayContainer.style.alignItems = 'center';
                 break;
-            case 'bottom':
+            case 'Bottom':
                 this.xrayContainer.style.alignItems = 'flex-start' ;
                 break;
         }
