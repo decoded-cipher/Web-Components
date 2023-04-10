@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Ray Component</title>
+
+    <script src="script.js"></script>
+
+</head>
+<body>
+
+    <script>
+
+        var thumbnails = [
+            "/assets/thumbnail/1.png",
+            "/assets/thumbnail/2.png",
+            "/assets/thumbnail/3.png",
+            "/assets/thumbnail/4.png",
+            "/assets/thumbnail/5.png",
+            "/assets/thumbnail/6.png",
+            "/assets/thumbnail/7.png",
+            "/assets/thumbnail/8.png"
+        ];
+
+        var previews = [
+            "/assets/preview/1.png",
+            "/assets/preview/2.png",
+            "/assets/preview/3.png",
+            "/assets/preview/4.png",
+            "/assets/preview/5.png",
+            "/assets/preview/6.png",
+            "/assets/preview/7.png",
+            "/assets/preview/8.png"
+        ];
+
+        var xRay = document.createElement("adctv-xray");
+        xRay.setAttribute("thumbnails", JSON.stringify(thumbnails));
+        xRay.setAttribute("previews", JSON.stringify(previews));
+
+        xRay.setAttribute("slidesToShow", 4);
+
+        xRay.setAttribute("width", "auto");
+        xRay.setAttribute("height", "auto");
+
+        xRay.setAttribute("autoplay", "false");
+        xRay.setAttribute("autoplayDirection", "left");
+        xRay.setAttribute("autoplayInterval", 2500);
+
+        xRay.setAttribute("previewPosition", "bottom");
+        xRay.setAttribute("xRayDirection", "horizontal");
+        
+        document.body.appendChild(xRay);
+
+
+    </script>
+    
+</body>
+</html>
