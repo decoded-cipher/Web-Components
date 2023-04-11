@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-Ray Component</title>
 
+    <script src="/assets/js/jquery-1.11.0.min.js"></script>
+    <script src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+
     <script src="script.js"></script>
 
 </head>
@@ -22,6 +26,7 @@
             "/assets/thumbnail/6.png",
             "/assets/thumbnail/7.png",
             "/assets/thumbnail/8.png"
+            
         ];
 
         var previews = [
@@ -39,17 +44,12 @@
         xRay.setAttribute("xray-thumbnails", JSON.stringify(thumbnails));
         xRay.setAttribute("xray-previews", JSON.stringify(previews));
 
-        xRay.setAttribute("xray-slidesToShow", 5);
-
         xRay.setAttribute("xray-width", 800);
         xRay.setAttribute("xray-height", "auto");
-
-        xRay.setAttribute("xray-autoplay", "false");
-        xRay.setAttribute("xray-autoplayDirection", "left");
-        xRay.setAttribute("xray-autoplayInterval", 2500);
-
-        xRay.setAttribute("xray-previewPosition", "bottom");
-        xRay.setAttribute("xray-direction", "horizontal");
+        
+        xRay.setAttribute("xray-slidesToShow", 3);
+        xRay.setAttribute("xray-autoplay", "False");
+        xRay.setAttribute("xray-autoplayInterval", 2);
         
         document.body.appendChild(xRay);
 

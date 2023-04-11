@@ -42,20 +42,12 @@
       "description": "X-Ray Preview images"
     },
     {
-      "min": 3,
-      "name": "xray-slidesToShow",
-      "type": "number",
-      "label": "Slides to show",
-      "description": "Number of slides to show at a time",
-      "defaultValue": 4
-    },
-    {
       "min": 100,
       "name": "xray-width",
       "type": "number",
       "label": "Width",
       "description": "Width of the X-Ray Component",
-      "defaultValue": "auto"
+      "defaultValue": 800
     },
     {
       "min": 100,
@@ -66,42 +58,31 @@
       "defaultValue": "auto"
     },
     {
-      "name": "xray-autoplay",
-      "type": "boolean",
-      "label": "Autoplay",
-      "required": false,
-      "description": "Autoplay the X-Ray Carousel",
-      "defaultValue": false
+      "min": 1,
+      "name": "xray-slidesToShow",
+      "type": "number",
+      "label": "Slides to show",
+      "description": "Number of slides to show at a time",
+      "defaultValue": 3
     },
     {
-      "min": 100,
+      "name": "xray-autoplay",
+      "type": "string",
+      "label": "Autoplay",
+      "description": "X-Ray Autoplay",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["True", "False"]
+      },
+      "defaultValue": "False"
+    },    
+    {
+      "min": 1000,
       "name": "xray-autoplayInterval",
       "type": "number",
       "label": "Autoplay Interval",
       "description": "X-Ray Autoplay Interval",
       "defaultValue": 3000
-    },
-    {
-      "name": "xray-previewPosition",
-      "type": "string",
-      "label": "Preview Position",
-      "description": "Position of the Preview Image",
-      "gwdSpecific": {
-        "type": "dropdown",
-        "items": ["Top", "Center", "Bottom"]
-      },
-      "defaultValue": "Top"
-    },
-    {
-      "name": "xray-direction",
-      "type": "string",
-      "label": "X-Ray Direction",
-      "description": "Direction of the X-Ray Carousel",
-      "gwdSpecific": {
-        "type": "dropdown",
-        "items": ["Vertical", "Horizontal"]
-      },
-      "defaultValue": "Horizontal"
     }
   ],
   "description": "ADCTV X-Ray Carousel",
