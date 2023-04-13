@@ -1,0 +1,163 @@
+{
+  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "name": "Adctv Spinner",
+  "type": "adctv-spinner",
+  "files": {
+    "js": [
+      "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+      "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+    ]
+  },
+  "events": [],
+  "methods": [],
+  "tagName": "adctv-spinner",
+  "version": 2,
+  "category": "Galleries",
+  "attributes": [
+    
+    {
+      "name": "offers",
+      "type": "string",
+      "label": "Text Content",
+      "bindable": true,
+      "required": true,
+      "description": "Text content of the spinner (separated by comma)"
+    },
+
+
+    {
+      "min": 2,
+      "name": "slices",
+      "type": "number",
+      "label": "Slice Count",
+      "required": true,
+      "description": "Number of slices in the spinner",
+      "defaultValue": 8
+    },
+    {
+      "min": 100,
+      "name": "size",
+      "type": "number",
+      "label": "Size",
+      "required": true,
+      "description": "Radius of the Spinner",
+      "defaultValue": 300
+    },
+    {
+      "min": 0,
+      "name": "stroke-width",
+      "type": "number",
+      "label": "Stroke Width",
+      "description": "Stroke width of the spinner"
+    },
+    {
+      "name": "stroke-color",
+      "type": "color",
+      "label": "Stroke Color",
+      "bindable": true,
+      "description": "Stroke color of the spinner",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#FF0C0C"
+    },
+    {
+      "name": "fill-type",
+      "type": "string",
+      "label": "Fill Type",
+      "description": "Fill type of the spinner",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Solid", "Gradient"]
+      },
+      "defaultValue": "Gradient"
+    },
+    {
+      "min": 0,
+      "name": "break-point",
+      "type": "number",
+      "label": "Word Break Point",
+      "required": true,
+      "description": "Number of characters to break the word",
+      "defaultValue": 10
+    },
+    {
+      "name": "font-family",
+      "type": "string",
+      "label": "Font Family",
+      "description": "Font family of the spinner",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Arial", "Roboto", "Open Sans"]
+      },
+      "defaultValue": "Arial"
+    },
+    {
+      "name": "font-weight",
+      "type": "string",
+      "label": "Font Weight",
+      "description": "Font weight of the spinner",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Regular", "Bold"]
+      },
+      "defaultValue": "Regular"
+    },
+    {
+      "name": "font-style",
+      "type": "string",
+      "label": "Font Style",
+      "description": "Font style of the spinner",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Regular", "Italic"]
+      },
+      "defaultValue": "Regular"
+    },
+    {
+      "name": "font-color",
+      "type": "color",
+      "label": "Font Color",
+      "bindable": true,
+      "description": "Font color of the spinner",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#000000"
+    },
+    {
+      "min": 1,
+      "name": "font-size",
+      "type": "number",
+      "label": "Font Size",
+      "required": true,
+      "description": "Font size of the spinner",
+      "defaultValue": 5
+    },
+    {
+      "min": 2,
+      "name": "spin-count",
+      "type": "number",
+      "label": "Spin Count",
+      "required": true,
+      "description": "Number of times the spinner should spin before stopping",
+      "defaultValue": 10
+    },
+    {
+      "min": 10,
+      "max": 30,
+      "name": "center-offset",
+      "type": "number",
+      "label": "Center Offset",
+      "required": true,
+      "description": "Offset for text from the center of the spinner",
+      "defaultValue": 17
+    }
+  ],
+  "description": "Spinner component",
+  "externalScripts": [
+    "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+    "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+  ],
+  "customElementsVersion": 1
+}
