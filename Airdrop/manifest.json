@@ -1,0 +1,98 @@
+  {
+    "icon": "https://ads.adctv.com/components/img/carousel.svg",
+    "name": "ADCTV Airdrop",
+    "type": "adctv-airdrop",
+    "files": {
+      "js": [
+        "https://ads.adctv.com/components/adctv-airdrop/adctv-airdrop.js"
+      ]
+    },
+    "events": [
+      {
+        "name": "first-score",
+        "label": "First Score",
+        "description": "first score event"
+      },
+      {
+        "name": "half-score",
+        "label": "Half Score",
+        "description": "half score event"
+      },
+      {
+        "name": "full-score",
+        "label": "Full Score",
+        "description": "full score event"
+      }
+    ],
+    "methods": [{
+        "name": "startAirDrop",
+        "label": "Start Airdrop",
+        "description": "start the airdrop"
+      }
+    ],
+    "tagName": "adctv-airdrop",
+    "version": 1,
+    "category": "Galleries",
+    "attributes": [{
+        "name": "airdrop-objects",
+        "type": "multiple-file",
+        "asset": true,
+        "label": "Airdrop Objects",
+        "accept": "image/*",
+        "description": "Objects that will be airdropped"
+      },
+      {
+        "name": "airdrop-collectBox",
+        "label": "Collect Box",
+        "type": "file",
+        "asset": true,
+        "accept": "image/*",
+        "bindable": true,
+        "description": "Image of the box that will collect the objects"
+      },
+      {
+        "name": "airdrop-backgroundImage",
+        "label": "Background Image",
+        "type": "file",
+        "asset": true,
+        "accept": "image/*",
+        "bindable": true,
+        "description": "Background image of the airdrop"
+      },
+      {
+        "name": "airdrop-dropPattern",
+        "type": "string",
+        "label": "",
+        "description": "Drop pattern of the objects",
+        "gwdSpecific": {
+          "type": "dropdown",
+          "items": ["One-by-One", "Random"]
+        },
+        "defaultValue": "One-by-One"
+      },
+      {
+        "min": 100,
+        "name": "airdrop-width",
+        "type": "number",
+        "label": "Width",
+        "required": true,
+        "description": "Width of the Airdrop",
+        "defaultValue": 300
+      },
+      {
+        "min": 100,
+        "name": "airdrop-height",
+        "type": "number",
+        "label": "Height",
+        "required": true,
+        "description": "Height of the Airdrop",
+        "defaultValue": 600
+      }
+    ],
+    "description": "Airdrop component",
+    "externalScripts": [
+      "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
+      "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+    ],
+    "customElementsVersion": 1
+  }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Drop</title>
+
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <script>
+
+        var objects = ["./assets/items/1.png","./assets/items/2.png","./assets/items/3.png","./assets/items/4.png","./assets/items/5.png"];
+        var backgroundImage = "./assets/background.png";
+        var collectBox = "./assets/box.png";
+
+        var airdrop = document.createElement("adctv-airdrop");
+        
+        airdrop.setAttribute("airdrop-objects", JSON.stringify(objects));
+        airdrop.setAttribute("airdrop-collectBox", collectBox);
+        airdrop.setAttribute("airdrop-backgroundImage", backgroundImage);
+
+        airdrop.setAttribute("airdrop-dropPattern", "Random");
+        
+        airdrop.setAttribute("airdrop-width", 300);
+        airdrop.setAttribute("airdrop-height", 600);
+
+        document.body.appendChild(airdrop);
+
+
+
+        // ----------------- Events -----------------
+
+        airdrop.addEventListener("half-score", (e) => {
+            console.log("half-score event fired");
+        });
+
+        airdrop.addEventListener("full-score", (e) => {
+            console.log("full-score event fired");
+        });
+
+        airdrop.addEventListener("first-score", (e) => {
+            console.log("first-score event fired");
+        });
+
+    </script>
+</body>
+</html>
