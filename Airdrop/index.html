@@ -12,20 +12,25 @@
 <body>
     <script>
 
-        var objects = ["./assets/items/1.png","./assets/items/2.png","./assets/items/3.png","./assets/items/4.png","./assets/items/5.png"];
+        var objects = "./assets/items/1.png, ./assets/items/2.png, ./assets/items/3.png, ./assets/items/4.png, ./assets/items/5.png";
         var backgroundImage = "./assets/background.png";
         var collectBox = "./assets/box.png";
 
         var airdrop = document.createElement("adctv-airdrop");
         
-        airdrop.setAttribute("airdrop-objects", JSON.stringify(objects));
+        airdrop.setAttribute("airdrop-objects", objects);
+        airdrop.setAttribute("airdrop-objectSize", 50);
+
         airdrop.setAttribute("airdrop-collectBox", collectBox);
-        airdrop.setAttribute("airdrop-backgroundImage", backgroundImage);
+        airdrop.setAttribute("airdrop-collectBoxSize", 100);
 
         airdrop.setAttribute("airdrop-dropPattern", "Random");
+        airdrop.setAttribute("airdrop-backgroundImage", backgroundImage);
+
+        airdrop.setAttribute("airdrop-autoplay", true);
+        airdrop.setAttribute("airdrop-collapseAfter", true);
+
         
-        airdrop.setAttribute("airdrop-width", 300);
-        airdrop.setAttribute("airdrop-height", 600);
 
         document.body.appendChild(airdrop);
 
@@ -34,15 +39,19 @@
         // ----------------- Events -----------------
 
         airdrop.addEventListener("half-score", (e) => {
-            console.log("half-score event fired");
+            console.log("--- half-score event fired ---");
         });
 
         airdrop.addEventListener("full-score", (e) => {
-            console.log("full-score event fired");
+            console.log("--- full-score event fired ---");
         });
 
         airdrop.addEventListener("first-score", (e) => {
-            console.log("first-score event fired");
+            console.log("--- first-score event fired ---");
+        });
+
+        airdrop.addEventListener("game-over", (e) => {
+            console.log("--- game-over event fired ---");
         });
 
     </script>

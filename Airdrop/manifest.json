@@ -22,6 +22,11 @@
         "name": "full-score",
         "label": "Full Score",
         "description": "full score event"
+      },
+      {
+        "name": "game-over",
+        "label": "Game Over",
+        "description": "game over event"
       }
     ],
     "methods": [{
@@ -42,6 +47,15 @@
         "description": "Objects that will be airdropped"
       },
       {
+        "min": 20,
+        "name": "airdrop-objectSize",
+        "type": "number",
+        "label": "Object Size",
+        "required": true,
+        "description": "Size of falling objects",
+        "defaultValue": 50
+      },
+      {
         "name": "airdrop-collectBox",
         "label": "Collect Box",
         "type": "file",
@@ -51,13 +65,13 @@
         "description": "Image of the box that will collect the objects"
       },
       {
-        "name": "airdrop-backgroundImage",
-        "label": "Background Image",
-        "type": "file",
-        "asset": true,
-        "accept": "image/*",
-        "bindable": true,
-        "description": "Background image of the airdrop"
+        "min": 50,
+        "name": "airdrop-collectBoxSize",
+        "type": "number",
+        "label": "Collect Box Size",
+        "required": true,
+        "description": "Size of the collect box",
+        "defaultValue": 100
       },
       {
         "name": "airdrop-dropPattern",
@@ -71,22 +85,29 @@
         "defaultValue": "One-by-One"
       },
       {
-        "min": 100,
-        "name": "airdrop-width",
-        "type": "number",
-        "label": "Width",
-        "required": true,
-        "description": "Width of the Airdrop",
-        "defaultValue": 300
+        "name": "airdrop-backgroundImage",
+        "label": "Background Image",
+        "type": "file",
+        "asset": true,
+        "accept": "image/*",
+        "bindable": true,
+        "description": "Background image of the airdrop"
       },
       {
-        "min": 100,
-        "name": "airdrop-height",
-        "type": "number",
-        "label": "Height",
-        "required": true,
-        "description": "Height of the Airdrop",
-        "defaultValue": 600
+        "name": "airdrop-autoplay",
+        "type": "boolean",
+        "label": "Autoplay",
+        "required": false,
+        "description": "Starts dropping objects automatically",
+        "defaultValue": true
+      },
+      {
+        "name": "airdrop-collapseAfter",
+        "type": "boolean",
+        "label": "Collapse Animation",
+        "required": false,
+        "description": "Collapse animation after the airdrop is finished",
+        "defaultValue": true
       }
     ],
     "description": "Airdrop component",
