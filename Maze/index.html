@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="script.js"></script>
+    <title>ADCTV Maze</title>
+
+</head>
+<body>
+    <script>
+
+        var adctv_maze = document.createElement("adctv-maze");
+
+        adctv_maze.setAttribute("bodyColor", "#ffffff");
+
+        adctv_maze.setAttribute("size", 500);
+        adctv_maze.setAttribute("mazeColor", "#ff0000");
+        adctv_maze.setAttribute("mazeStroke", 3);
+
+        adctv_maze.setAttribute("complexity", 10);
+        adctv_maze.setAttribute("showPath", true);
+
+        adctv_maze.setAttribute("trailProcessingColor", "#0000ff");
+        adctv_maze.setAttribute("trailResultColor", "#00ff00");
+        adctv_maze.setAttribute("trailShape", "circle");
+
+        adctv_maze.setAttribute("animation", true);
+        adctv_maze.setAttribute("animationDelay", 50);
+
+        document.body.appendChild(adctv_maze);
+
+    </script>
+</body>
+</html>
