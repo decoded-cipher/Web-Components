@@ -18,24 +18,43 @@ class ADCTV_Maze extends HTMLElement {
 
         var mazeOptions = {
 
-            bodyColor : this.getAttribute('bodyColor') || '#ffffff',
+            maze_actorImage : this.getAttribute('maze_actorImage') || null,
 
-            size : this.getAttribute('size') || 500,
-            mazeColor : this.getAttribute('mazeColor') || '#000000',
-            mazeStroke : this.getAttribute('mazeStroke') || 1,
+            size : this.getAttribute('maze_size') || 500,
+            mazeColor : this.getAttribute('maze_mazeColor') || '#000000',
+            mazeStroke : this.getAttribute('maze_mazeStroke') || 1,
 
-            complexity : this.getAttribute('complexity') || 10,
-            showPath : this.hasAttribute('showPath') || false,
+            complexity : this.getAttribute('maze_complexity') || 10,
+            showPath : this.hasAttribute('maze_showPath') || false,
             
-            trailProcessingColor : this.getAttribute('trailProcessingColor') || "#ff0000",
-            trailResultColor : this.getAttribute('trailResultColor') || "#00ff00",
-            trailShape : this.getAttribute('trailShape') || "circle",
+            trailProcessingColor : this.getAttribute('maze_trailProcessingColor') || "#ff0000",
+            trailResultColor : this.getAttribute('maze_trailResultColor') || "#00ff00",
+            trailShape : this.getAttribute('maze_trailShape') || "Circle",
 
-            animation : this.hasAttribute('animation') || false,
-            animationDelay : this.getAttribute('animationDelay') || 100,
+            animation : this.hasAttribute('maze_animation') || false,
+            animationDelay : this.getAttribute('maze_animationDelay') || 100
+
         };
 
-        new Maze(this.shadow.getElementById('myCanvas'), mazeOptions);
+
+        var maze = new Maze(this.shadow.getElementById('myCanvas'), mazeOptions);
+
+
+        // -------------------------- Exposing Methods & Events --------------------------------
+
+
+        this.ArrowUp = () => maze.ArrowUp();
+        this.ArrowDown = () => maze.ArrowDown();
+        this.ArrowLeft = () => maze.ArrowLeft();
+        this.ArrowRight = () => maze.ArrowRight();
+        this.Restart = () => maze.Restart();
+        this.Hint = () => maze.Hint();
+
+        ["start", "win", "moveUp", "moveDown", "moveLeft", "moveRight", "restart", "hint"].forEach((eventName) => {
+            this.shadow.getElementById('myCanvas').addEventListener(eventName, (e) => {
+                this.dispatchEvent(new CustomEvent(eventName, { detail: e.detail }));
+            });
+        });
 
     }
 
@@ -45,6 +64,8 @@ class ADCTV_Maze extends HTMLElement {
 
 class Maze {
     constructor(canv, options) {
+
+        options.bodyColor = '#ffffff';
 
         var nx = options.complexity;
         var ny = options.complexity;
@@ -64,13 +85,28 @@ class Maze {
             this.ctx.lineWidth = 1
             this.ctx.strokeStyle = edgecolor;
             this.ctx.stroke();
+
+            // place the actor image on top of rectangle
+            if(options.actorImage) {
+                var img = new Image();
+                img.src = options.actorImage;
+                this.maze = this.ctx.drawImage(img, this.xTerrain(x) + this.dx / 4, this.yTerrain(y) + this.dy / 4, this.dx / 2, this.dy / 2);
+            }
+            
         }
+
+
+
+
+
+
+        
 
         // to show the path finding algorithm in action
         this.drawMoib = (x, y) => {
             this.ctx.beginPath();
 
-            if(options.trailShape == 'circle') {
+            if(options.trailShape == 'Circle') {
                 this.ctx.arc(this.xTerrain(x) + this.dx / 2, this.yTerrain(y) + this.dy / 2, this.dx / 12, 0, 2 * Math.PI);
             } else {
                 this.ctx.rect(this.xTerrain(x) + this.dx / 3, this.yTerrain(y) + this.dy / 3, this.dx / 4, this.dy / 4);
@@ -88,7 +124,7 @@ class Maze {
         this.drawMoic = (x, y) => {
             this.ctx.beginPath();
             
-            if(options.trailShape == 'circle') {
+            if(options.trailShape == 'Circle') {
                 this.ctx.arc(this.xTerrain(x) + this.dx / 2, this.yTerrain(y) + this.dy / 2, this.dx / 12, 0, 2 * Math.PI);
             } else {
                 this.ctx.rect(this.xTerrain(x) + this.dx / 3, this.yTerrain(y) + this.dy / 3, this.dx / 4, this.dy / 4);
@@ -461,10 +497,10 @@ class Maze {
         };
 
 
-
-
         // ------------------  drawing functions --------------------------------
 
+
+        this.triggerStart = false;
         this.canv = canv;
         options.bodyColor = options.bodyColor
         this.canv.width = options.width
@@ -473,63 +509,62 @@ class Maze {
         this.start(nx, ny);
 
         // Anonyme function to handle key strokes
-        ((obj) => {
+        (() => {
 
+            
             document.onkeydown = (keyStroke) => {
 
+                if(this.triggerStart === false) {
+                    this.triggerEvent('start');
+                    this.triggerStart = true;
+                }
+
                 if (keyStroke.defaultPrevented) return; // Already treated
-                if (obj.resolutionInProgress) return; // ignore while solving
+                if (this.resolutionInProgress) return; // ignore while solving
                 
                 var x = keyStroke;
                 var y = 5;
-                var move = 0;
+                this.move = 0;
                 y = x.key;
 
                 switch (y) {
                     case 'ArrowUp':
-                        if ((obj.terrain[obj.xMoi][obj.yMoi] & 1) == 0) {
-                            obj.remove();
-                            obj.yMoi--;
-                            obj.drawMoi();
-                            move = 1;
-                        }
+                        this.ArrowUp();
+                        this.triggerEvent('moveUp');
                         break;
+                        
                     case 'ArrowLeft':
-                        if ((obj.terrain[obj.xMoi][obj.yMoi] & 2) == 0) {
-                            obj.remove();
-                            obj.xMoi--;
-                            obj.drawMoi();
-                            move = 1;
-                        }
+                        this.ArrowLeft();
+                        this.triggerEvent('moveLeft');
                         break;
-                    case 'ArrowDown':
-                        if ((obj.terrain[obj.xMoi][obj.yMoi] & 4) == 0) {
-                            obj.remove();
-                            obj.yMoi++;
-                            obj.drawMoi();
-                            move = 1;
-                        }
-                        break;
-                    case 'ArrowRight':
-                        if ((obj.terrain[obj.xMoi][obj.yMoi] & 8) == 0) {
-                            obj.remove();
-                            obj.xMoi++;
-                            obj.drawMoi();
-                            move = 1;
-                        }
-                        break;
-                    case 's':
-                        ;
-                    case 'S':
-                        ;
-                    case 'U+0053':
-                        ;
-                    case 'U+0073':
 
+                    case 'ArrowDown':
+                        this.ArrowDown();
+                        this.triggerEvent('moveDown');
+                        break;
+
+                    case 'ArrowRight':
+                        this.ArrowRight();
+                        this.triggerEvent('moveRight');
+                        break;
+                    
+                    // press r to restart
+                    case 'r':
+                        ;
+                    case 'R':
+                        ;
+                    case 'U+0052':
+                        ;
+                    case 'U+0072':
+                        this.Restart();
+                        this.triggerEvent('restart');
+                        break;
+
+                    // press space for solution
+                    case ' ':
                         if(options.showPath) {
-                            obj.resolutionInProgress = true;
-                            obj.initiateSearch();
-                            obj.drawMoi();
+                            this.Hint();
+                            this.triggerEvent('hint');
                         }
                         break;
                         
@@ -538,13 +573,87 @@ class Maze {
                 }
                 keyStroke.preventDefault();
 
-                if (move == 1 && obj.xMoi == obj.nx - 1 && obj.yMoi == obj.ys) {
+                if (this.move == 1 && this.xMoi == this.nx - 1 && this.yMoi == this.ys) {
+                    this.triggerEvent('win');
+
                     setTimeout(() => {
                         alert('Congratulations ! You win !')
                     }, 100);
+                    
                 }
             };
-        })(this);
+        })();
+
+
+        // ------------------ key stroke functions --------------------------------
+
+
+        this.ArrowUp = () => {
+            if ((this.terrain[this.xMoi][this.yMoi] & 1) == 0) {
+                this.remove();
+                this.yMoi--;
+                this.drawMoi();
+                this.move = 1;
+            }
+        }
+
+        this.ArrowLeft = () => {
+            if ((this.terrain[this.xMoi][this.yMoi] & 2) == 0) {
+                this.remove();
+                this.xMoi--;
+                this.drawMoi();
+                this.move = 1;
+            }
+        }
+
+        this.ArrowDown = () => {
+            if ((this.terrain[this.xMoi][this.yMoi] & 4) == 0) {
+                this.remove();
+                this.yMoi++;
+                this.drawMoi();
+                this.move = 1;
+            }
+        }
+
+        this.ArrowRight = () => {
+            if ((this.terrain[this.xMoi][this.yMoi] & 8) == 0) {
+                this.remove();
+                this.xMoi++;
+                this.drawMoi();
+                this.move = 1;
+            }
+        }
+
+        this.Restart = () => {
+            this.start(this.nx, this.ny);
+        }
+
+        this.Hint = () => {
+            this.resolutionInProgress = true;
+            this.initiateSearch();
+            this.drawMoi();
+        }
+
+
+        // ------------------  Custom Events --------------------------------
+
+
+        this.triggerEvent = (event) => {
+
+            this.canv.dispatchEvent(
+                new CustomEvent(event, {
+                    detail: {
+                        name: event,
+                        time: new Date()
+                    }
+                })
+            );
+
+        }
+
+
+
+        
 
     }
     

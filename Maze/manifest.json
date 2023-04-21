@@ -1,0 +1,202 @@
+{
+  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "name": "Adctv Maze",
+  "type": "adctv-maze",
+  "files": {
+    "js": [
+      "https://ads.adctv.com/components/adctv-maze/adctv-maze.js"
+    ]
+  },
+  "events": [
+    {
+      "name": "start",
+      "label": "Maze Started",
+      "description": "User starts solving the maze"
+    },
+    {
+      "name": "win",
+      "label": "Maze Solved",
+      "description": "User solves the maze and reaches the exit"
+    },
+    {
+      "name": "moveUp",
+      "label": "Move Up",
+      "description": "User moves the Actor Up by one space"
+    },
+    {
+      "name": "moveDown",
+      "label": "Move Down",
+      "description": "User moves the Actor Down by one space"
+    },
+    {
+      "name": "moveLeft",
+      "label": "Move Left",
+      "description": "User moves the Actor Left by one space"
+    },
+    {
+      "name": "moveRight",
+      "label": "Move Right",
+      "description": "User moves the Actor Right by one space"
+    },
+    {
+      "name": "restart",
+      "label": "Restart Maze",
+      "description": "User restarts the maze from the beginning"
+    },
+    {
+      "name": "hint",
+      "label": "Hint Requested",
+      "description": "User requests a hint to solve the maze"
+    }
+  ],
+  "methods": [
+    {
+      "name": "ArrowUp",
+      "label": "Arrow Up",
+      "description": "Move the Actor Up"
+    },
+    {
+      "name": "ArrowDown",
+      "label": "Arrow Down",
+      "description": "Move the Actor Down"
+    },
+    {
+      "name": "ArrowLeft",
+      "label": "Arrow Left",
+      "description": "Move the Actor Left"
+    },
+    {
+      "name": "ArrowLeft",
+      "label": "Arrow Left",
+      "description": "Move the Actor Left"
+    },
+    {
+      "name": "ArrowRight",
+      "label": "Arrow Right",
+      "description": "Move the Actor Right"
+    },
+    {
+      "name": "Restart",
+      "label": "Restart Maze",
+      "description": "Restart the maze from the beginning"
+    },
+    {
+      "name": "Hint",
+      "label": "Hint Requested",
+      "description": "Show the path to the exit of the maze"
+    }
+  ],
+  "tagName": "adctv-maze",
+  "version": 1,
+  "category": "Galleries",
+  "attributes": [
+    {
+      "name": "maze_actorImage",
+      "label": "Actor Image",
+      "type": "file",
+      "asset": true,
+      "accept": "image/*",
+      "bindable": true,
+      "description": "Image of the object that will move through the maze"
+    },
+    {
+      "min": 100,
+      "name": "maze_size",
+      "type": "number",
+      "label": "Maze Size",
+      "required": true,
+      "description": "Size of the maze (width and height)",
+      "defaultValue": 500
+    },
+    {
+      "name": "maze_mazeColor",
+      "type": "color",
+      "label": "Maze Color",
+      "bindable": true,
+      "description": "Color of the maze walls",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#ff0000"
+    },
+    {
+      "min": 1,
+      "name": "maze_mazeStroke",
+      "type": "number",
+      "label": "Stroke Width",
+      "required": true,
+      "description": "Stroke width of the maze walls",
+      "defaultValue": 3
+    },
+    {
+      "min": 5,
+      "name": "maze_complexity",
+      "type": "number",
+      "label": "Complexity",
+      "required": true,
+      "description": "Complexity of the maze (higher number = more complex)",
+      "defaultValue": 10
+    },
+    {
+      "name": "maze_showPath",
+      "type": "boolean",
+      "label": "Enable Hint",
+      "required": false,
+      "description": "Show the path to the exit the maze",
+      "defaultValue": true
+    },
+    {
+      "name": "maze_trailProcessingColor",
+      "type": "color",
+      "label": "Path Finding Color",
+      "bindable": true,
+      "description": "Color of trail while path finding is in progress",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#0000ff"
+    },
+    {
+      "name": "maze_trailResultColor",
+      "type": "color",
+      "label": "Correct Path Color",
+      "bindable": true,
+      "description": "Color of trail when path finding is complete",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#00ff00"
+    },
+    {
+      "name": "maze_trailShape",
+      "type": "string",
+      "label": "Trail Shape",
+      "description": "Shape of the trail that leads to the exit",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Circle", "Square"]
+      },
+      "defaultValue": "Circle"
+    },
+    {
+      "name": "maze_animation",
+      "type": "boolean",
+      "label": "Enable Animation",
+      "required": false,
+      "description": "Enable animation of the trail while path finding is in progress",
+      "defaultValue": true
+    },
+    {
+      "min": 10,
+      "name": "maze_animationDelay",
+      "type": "number",
+      "label": "Animation Delay",
+      "required": true,
+      "description": "Animation delay in milliseconds (higher number = slower animation)",
+      "defaultValue": 50
+    }
+  ],
+  "description": "Maze component",
+  "externalScripts": [],
+  "customElementsVersion": 1
+}

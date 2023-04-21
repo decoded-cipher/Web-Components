@@ -14,23 +14,46 @@
 
         var adctv_maze = document.createElement("adctv-maze");
 
-        adctv_maze.setAttribute("bodyColor", "#ffffff");
+        adctv_maze.setAttribute("maze_actorImage", "http://127.0.0.1:5500/assets/key.png");
 
-        adctv_maze.setAttribute("size", 500);
-        adctv_maze.setAttribute("mazeColor", "#ff0000");
-        adctv_maze.setAttribute("mazeStroke", 3);
+        adctv_maze.setAttribute("maze_size", 500);
+        adctv_maze.setAttribute("maze_mazeColor", "#ff0000");
+        adctv_maze.setAttribute("maze_mazeStroke", 3);
 
-        adctv_maze.setAttribute("complexity", 10);
-        adctv_maze.setAttribute("showPath", true);
+        adctv_maze.setAttribute("maze_complexity", 10);
+        adctv_maze.setAttribute("maze_showPath", true);
 
-        adctv_maze.setAttribute("trailProcessingColor", "#0000ff");
-        adctv_maze.setAttribute("trailResultColor", "#00ff00");
-        adctv_maze.setAttribute("trailShape", "circle");
+        adctv_maze.setAttribute("maze_trailProcessingColor", "#0000ff");
+        adctv_maze.setAttribute("maze_trailResultColor", "#00ff00");
+        adctv_maze.setAttribute("maze_trailShape", "Circle");
 
-        adctv_maze.setAttribute("animation", true);
-        adctv_maze.setAttribute("animationDelay", 50);
+        adctv_maze.setAttribute("maze_animation", true);
+        adctv_maze.setAttribute("maze_animationDelay", 50);
 
         document.body.appendChild(adctv_maze);
+
+
+
+        // ------------------  Custom Events  ------------------
+
+
+        ["start", "win", "moveUp", "moveDown", "moveLeft", "moveRight", "restart", "hint"].forEach((event) => {
+            adctv_maze.addEventListener(event, (e) => {
+                console.log(e.detail)
+            });
+        })
+
+
+        // ------------------  Exposed Methods  ------------------
+
+
+        // adctv_maze.ArrowUp();
+        // adctv_maze.ArrowDown();
+        // adctv_maze.ArrowLeft();
+        // adctv_maze.ArrowRight();
+        // adctv_maze.Restart();
+        // adctv_maze.Hint();
+
 
     </script>
 </body>
