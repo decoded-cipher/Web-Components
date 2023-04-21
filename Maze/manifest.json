@@ -91,15 +91,6 @@
   "category": "Galleries",
   "attributes": [
     {
-      "name": "maze_actorImage",
-      "label": "Actor Image",
-      "type": "file",
-      "asset": true,
-      "accept": "image/*",
-      "bindable": true,
-      "description": "Image of the object that will move through the maze"
-    },
-    {
       "min": 100,
       "name": "maze_size",
       "type": "number",
@@ -127,6 +118,17 @@
       "required": true,
       "description": "Stroke width of the maze walls",
       "defaultValue": 3
+    },
+    {
+      "name": "maze_actorColor",
+      "type": "color",
+      "label": "Actor Color",
+      "bindable": true,
+      "description": "Color of the Actor (the player)",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#0000ff"
     },
     {
       "min": 5,

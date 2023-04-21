@@ -18,24 +18,22 @@ class ADCTV_Maze extends HTMLElement {
 
         var mazeOptions = {
 
-            maze_actorImage : this.getAttribute('maze_actorImage') || null,
-
             size : this.getAttribute('maze_size') || 500,
-            mazeColor : this.getAttribute('maze_mazeColor') || '#000000',
+            mazeColor : this.getAttribute('maze_mazeColor') || '#ff0000',
             mazeStroke : this.getAttribute('maze_mazeStroke') || 1,
+            actorColor : this.getAttribute('maze_actorColor') || '#000000',
 
             complexity : this.getAttribute('maze_complexity') || 10,
-            showPath : this.hasAttribute('maze_showPath') || false,
+            showPath : this.getAttribute('maze_showPath') === 'true' ? true : false,
             
             trailProcessingColor : this.getAttribute('maze_trailProcessingColor') || "#ff0000",
             trailResultColor : this.getAttribute('maze_trailResultColor') || "#00ff00",
             trailShape : this.getAttribute('maze_trailShape') || "Circle",
 
-            animation : this.hasAttribute('maze_animation') || false,
+            animation : this.getAttribute('maze_animation') === 'true' ? true : false,
             animationDelay : this.getAttribute('maze_animationDelay') || 100
 
         };
-
 
         var maze = new Maze(this.shadow.getElementById('myCanvas'), mazeOptions);
 
@@ -148,7 +146,7 @@ class Maze {
 
         // draw the character who moves in the maze
         this.drawMoi = () => {
-            this.drawMoia(this.xMoi, this.yMoi, '#000000', '#ffffff');
+            this.drawMoia(this.xMoi, this.yMoi, options.actorColor, '#ffffff');
         }
 
         // calculate position x left edge of box n
@@ -562,7 +560,7 @@ class Maze {
 
                     // press space for solution
                     case ' ':
-                        if(options.showPath) {
+                        if(options.showPath === true) {
                             this.Hint();
                             this.triggerEvent('hint');
                         }
