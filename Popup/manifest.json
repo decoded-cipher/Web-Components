@@ -1,0 +1,19 @@
+{
+  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "name": "Adctv Popup",
+  "type": "adctv-popup",
+  "files": {
+    "js": [
+      "https://ads.adctv.com/scripts/components/adctv-carousel/popup.js"
+    ]
+  },
+  "events": [],
+  "methods": [],
+  "tagName": "adctv-popup",
+  "version": 1,
+  "category": "",
+  "attributes": [],
+  "description": "ADCTV Popup",
+  "externalScripts": [],
+  "customElementsVersion": 1
+}
