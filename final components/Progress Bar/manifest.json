@@ -1,0 +1,98 @@
+{
+    "name": "Adctv Progress",
+    "type": "adctv-progress",
+    "tagName": "adctv-progress",
+    "icon" : "https://ads.adctv.com/components/img/button.svg",
+    "version": 1.0,
+    "category": "UI",
+    "customElementsVersion": 1,
+    "description": "Adctv Progress",
+    "files": {
+      "js": ["https://ads.adctv.com/scripts/components/adctv-progress/adctv-progress.js"],
+      "css": []
+    },
+    "attributes": [
+      {
+        "name": "label",
+        "label": "Label",
+        "type": "string",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": "true",
+        "description": "progress label"
+      },
+      {
+        "name": "start-value",
+        "label": "Start Value",
+        "type": "number",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": 0,
+        "description": "progress start value"
+      },
+      {
+        "name": "max-value",
+        "label": "Max Value",
+        "type": "number",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": 100,
+        "description": "progress max value"
+      },
+      {
+        "name": "color",
+        "label": "Color",
+        "type": "string",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": "black",
+        "description": "progress color"
+      },
+      {
+        "name": "bg-color",
+        "label": "Background",
+        "type": "string",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": "grey",
+        "description": "progress label"
+      },
+      {
+        "name": "border-radius",
+        "label": "Border Radius",
+        "type": "number",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": 10,
+        "description": "progress label"
+      },
+      {
+        "name": "animation-time",
+        "label": "Animation Time",
+        "type": "number",
+        "bindable": true,
+        "required": "true",
+        "defaultValue": 0.5,
+        "description": "anmiation time",
+        "min":0.5,
+        "max":2
+      }
+    ],
+    "events": [],
+    "methods": [
+      {
+        "name": "switchProgress",
+        "label": "switch-progress",
+        "description": "move to next card",
+        "parameters": [
+          {
+              "name": "value",
+              "type": "number",
+              "label": "value",
+              "optional": false
+          }
+      ]
+      }
+    ],
+    "externalScripts": ["https://ads.adctv.com/scripts/components/adctv-progress/adctv-progress.js"]
+  }

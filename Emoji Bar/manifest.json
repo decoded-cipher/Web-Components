@@ -1,11 +1,10 @@
 {
-  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "icon": "https://ads.adctv.com/components/img/emoji-bar.svg",
   "name": "Emoji Bar",
-  "type": "component",
+  "type": "emoji-bar",
   "files": {
     "js": [
-      "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
-      "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+      "https://ads.adctv.com/scripts/components/emoji-bar/emoji-bar.js"
     ]
   },
   "events": [],
@@ -25,7 +24,6 @@
   "version": 1,
   "category": "Galleries",
   "attributes": [
-    
     {
       "name": "emojibar-type",
       "type": "string",
@@ -55,22 +53,6 @@
       "label": "Background Opacity",
       "description": "Opacity of the background color",
       "defaultValue": 50
-    },
-    {
-      "min": 0,
-      "name": "emojibar-width",
-      "type": "number",
-      "label": "Emojibar Width",
-      "description": "Width of the emoji bar",
-      "defaultValue": 300
-    },
-    {
-      "min": 0,
-      "name": "emojibar-height",
-      "type": "number",
-      "label": "Emojibar Height",
-      "description": "Height of the emoji bar",
-      "defaultValue": null
     },
     {
       "name": "emojibar-borderRadius",
@@ -117,8 +99,7 @@
   ],
   "description": "A bar of emojis that can be clicked to trigger animations",
   "externalScripts": [
-    "https://ads.adctv.com/components/adctv-carousel/hammer.min.js?0.0021983830762191126",
-    "https://ads.adctv.com/scripts/components/adctv-carousel/carousel.js"
+    "https://ads.adctv.com/scripts/components/emoji-bar/emoji-bar.js"
   ],
   "customElementsVersion": 1
 }
