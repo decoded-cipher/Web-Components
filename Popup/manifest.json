@@ -4,16 +4,102 @@
   "type": "adctv-popup",
   "files": {
     "js": [
-      "https://ads.adctv.com/scripts/components/adctv-carousel/popup.js"
+      "https://ads.adctv.com/components/adctv-popup/adctv-popup.js"
     ]
   },
-  "events": [],
-  "methods": [],
+  "events": [
+    {
+      "name": "open",
+      "label": "Popup Opened",
+      "description": "User opens the popup to reveal its nested components"
+    },
+    {
+      "name": "close",
+      "label": "Popup Closed",
+      "description": "User closes the popup to wrap the nested components"
+    }
+  ],
+  "methods": [
+    {
+      "name": "openAside",
+      "label": "Open Popup",
+      "description": "To open the popup component"
+    },
+    {
+      "name": "closeAside",
+      "label": "Close Popup",
+      "description": "To close the popup component"
+    }
+  ],
   "tagName": "adctv-popup",
   "version": 1,
-  "category": "",
-  "attributes": [],
-  "description": "ADCTV Popup",
-  "externalScripts": [],
+  "category": "Interaction",
+  "attributes": [
+    {
+      "name": "open-icon",
+      "label": "Open Icon",
+      "type": "file",
+      "asset": true,
+      "accept": "image/*",
+      "bindable": true,
+      "required": true,
+      "description": "Icon to open the popup"
+    },
+    {
+      "name": "close-icon",
+      "label": "Close Icon",
+      "type": "file",
+      "asset": true,
+      "accept": "image/*",
+      "bindable": true,
+      "required": true,
+      "description": "Icon to close the popup"
+    },
+    {
+      "name": "popup_bgColor",
+      "type": "color",
+      "label": "Background Color",
+      "bindable": true,
+      "description": "Background color of the popup",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "rgba(0, 0, 0, 0.5)"
+    },
+    {
+      "name": "popup_drawSide",
+      "type": "string",
+      "label": "Draw Side",
+      "description": "Side to draw the popup from",
+      "gwdSpecific": {
+        "type": "dropdown",
+        "items": ["Left", "Right"]
+      },
+      "defaultValue": "Left"
+    },
+    {
+      "name": "popup_hint",
+      "type": "string",
+      "label": "Hint Text",
+      "bindable": true,
+      "required": true,
+      "description": "Hint text to be displayed on the side of the popup"
+    },
+    {
+      "name": "popup_hintColor",
+      "type": "color",
+      "label": "Hint Color",
+      "bindable": true,
+      "description": "Hint text color",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "rgba(255, 255, 255, 1)"
+    }
+  ],
+  "description": "Popup component to nest other components",
+  "externalScripts": [
+    "https://ads.adctv.com/components/adctv-popup/adctv-popup.js"
+  ],
   "customElementsVersion": 1
 }

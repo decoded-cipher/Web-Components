@@ -16,13 +16,35 @@
 </head>
 <body>
 
-    <adctv-popup>
-
+    <!-- <adctv-popup>
         <p>Hello World !</p>
-        <p>Hello World !!</p>
-        <p>Hello World !!!</p>
+    </adctv-popup> -->
+
+    <script>
+
+        var popUp = document.createElement('adctv-popup');
         
-    </adctv-popup>
+        popUp.innerHTML = '<p>Hello World !</p>';
+
+        popUp.setAttribute('popup_openIcon', 'open_1.png');
+        popUp.setAttribute('popup_closeIcon', 'close_1.png');
+        popUp.setAttribute('popup_bgColor', 'rgba(0, 0, 0, 0.5)');
+        popUp.setAttribute('popup_drawSide', 'Left');
+        
+        popUp.setAttribute('popup_hint', 'Test Hint Message Here ...');
+        popUp.setAttribute('popup_hintColor', 'rgba(255, 255, 255, 1)');
+
+
+        ['open', 'close'].forEach((event) => {
+            popUp.addEventListener(event, (data) => {
+                console.log(event + ' - event fired !');
+            });
+        });
+
+
+        document.body.appendChild(popUp);
+
+    </script>
 
 </body>
 </html>
