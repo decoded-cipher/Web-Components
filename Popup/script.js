@@ -16,10 +16,13 @@ class PopUp extends HTMLElement {
 
     connectedCallback() {
 
-        this.openIcon = this.getAttribute('popup_openIcon') || "assets/open.png";
-        this.closeIcon = this.getAttribute('popup_closeIcon') || "assets/close.png";
+        this.openIcon = this.getAttribute('popup_openIcon') || "https://ads.adctv.com/assets/creatives/pop_up/open.png";
+        this.closeIcon = this.getAttribute('popup_closeIcon') || "https://ads.adctv.com/assets/creatives/pop_up/close.png";
         this.bgColor = this.getAttribute('popup_bgColor');
         this.drawSide = this.getAttribute('popup_drawSide');
+        
+        this.width = this.clientWidth;
+        this.height = this.clientHeight;
         
         this.message = this.getAttribute('popup_hint');
         this.messageColor = this.getAttribute('popup_hintColor');
@@ -60,7 +63,9 @@ class PopUp extends HTMLElement {
         this.sidebar = true;
         this.shadow.querySelector('.sidenav').innerHTML = `<div id="tagContent" style="opacity:0;">${this.innerHTML}</div>`;
 
-        this.shadow.querySelector('.sidenav').style.width = "250px";
+        this.shadow.querySelector('.sidenav').style.width = this.width+"px";
+        this.shadow.querySelector('.sidenav').style.height = this.height+"px";
+
         this.shadow.querySelector('.main').style = `padding: 0px; width: auto; ${this.drawSide == "Left" ? "float: left; transition: margin-left .5s; margin: 62px 0px 0px 258px;" : "float: right; transition: margin-right .5s; margin: 62px 258px 0px 0px;"}`
         this.drawSide == "Left" ? this.shadow.querySelector('#bg_image').style.left = "0px" : this.shadow.querySelector('#bg_image').style.right = "0px";
         this.shadow.querySelector('.openbtn').innerHTML = `<img src="${this.closeIcon}" style="height: 50px; width: 50px;">`;
@@ -76,7 +81,9 @@ class PopUp extends HTMLElement {
         this.sidebar = false;
         this.shadow.querySelector('.sidenav').innerHTML = `<div id="hint" style="position: absolute; width: 38px; height: 450px; display: flex; flex-direction: column; top: 50px; align-items: center; justify-content: center;"><p style="white-space: nowrap; transform: rotate(${this.drawSide == "Left" ? "-90deg" : "90deg"}); color: ${this.messageColor};">${this.message}</p></div>`;
         
-        this.shadow.querySelector('.sidenav').style.width = "38px";
+        this.shadow.querySelector('.sidenav').style.width = this.width+"px";
+        this.shadow.querySelector('.sidenav').style.height = this.height+"px";
+
         this.shadow.querySelector('.main').style = `${this.drawSide == "Left" ? "float: left; transition: margin-left .5s; margin: 62px 0px 0px 28px;" : "float: right; transition: margin-right .5s; margin: 62px 28px 0px 0px;"}`;
         this.drawSide == "Left" ? this.shadow.querySelector('#bg_image').style.left = "-230px" : this.shadow.querySelector('#bg_image').style.right = "-230px";
         this.shadow.querySelector('.openbtn').innerHTML = `<img src="${this.openIcon}" style="height: 50px; width: 50px;">`;
@@ -90,6 +97,10 @@ class PopUp extends HTMLElement {
             detail: data
         });
         this.dispatchEvent(event);
+    }
+
+    disconnectedCallback() {
+        this.shadow.innerHTML = "";
     }
 
 

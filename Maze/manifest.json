@@ -111,6 +111,17 @@
       "defaultValue": "#ff0000"
     },
     {
+      "name": "maze_bgColor",
+      "type": "color",
+      "label": "Background Color",
+      "bindable": true,
+      "description": "Color of the maze background",
+      "gwdSpecific": {
+        "advanced": true
+      },
+      "defaultValue": "#ffffff"
+    },
+    {
       "min": 1,
       "name": "maze_mazeStroke",
       "type": "number",

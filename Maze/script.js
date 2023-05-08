@@ -1,15 +1,16 @@
-const template = document.createElement('template');
-template.innerHTML = `
-    <div class="maze-container">
-        <canvas id="myCanvas" ></canvas>
-    </div>
-`;
 
 class ADCTV_Maze extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.shadow.appendChild(template.content.cloneNode(true));
+
+        this.template = document.createElement('template');
+        this.template.innerHTML = `
+            <div class="maze-container">
+                <canvas id="myCanvas"></canvas>
+            </div>
+        `;
+        this.shadow.appendChild(this.template.content.cloneNode(true));
     }
 
 
@@ -18,8 +19,9 @@ class ADCTV_Maze extends HTMLElement {
 
         var mazeOptions = {
 
-            size : this.getAttribute('maze_size') || 500,
+            size : this.clientWidth? parseInt(this.clientWidth) : 500,
             mazeColor : this.getAttribute('maze_mazeColor') || '#ff0000',
+            bgColor : this.getAttribute('maze_bgColor') || '#ffffff',
             mazeStroke : this.getAttribute('maze_mazeStroke') || 1,
             actorColor : this.getAttribute('maze_actorColor') || '#000000',
 
@@ -54,6 +56,28 @@ class ADCTV_Maze extends HTMLElement {
             });
         });
 
+        setTimeout(() => {
+            this.emitLoadedEvent();
+        }, 100);
+
+    }
+
+    emitLoadedEvent() {
+        if (window.__adctvScreenShot == true) {
+            var canvas = this.shadow.querySelector("#myCanvas");
+            canvas.id = "backdrop";
+            canvas.style.position = "fixed";
+            canvas.style.top = "100%";
+            let event = new CustomEvent("loaded", {
+                detail: canvas,
+                bubbles: true,
+                cancelable: false,
+                composed: true,
+            });
+            setTimeout(() => {
+                this.dispatchEvent(event);
+            }, 500);
+        }
     }
 
 }
@@ -63,15 +87,16 @@ class ADCTV_Maze extends HTMLElement {
 class Maze {
     constructor(canv, options) {
 
-        options.bodyColor = '#ffffff';
-
         var nx = options.complexity;
         var ny = options.complexity;
         
         options.width = options.size;
         options.height = options.size;
 
-        console.table(options);
+        // set background color
+        canv.style.backgroundColor = options.bgColor;
+
+        // console.table(options);
 
 
         // to leave movement trails in the maze as we move through it
@@ -141,12 +166,12 @@ class Maze {
         
         // remove the movement trails in the maze
         this.remove = () => {
-            this.drawMoia(this.xMoi, this.yMoi, options.bodyColor, options.bodyColor);
+            this.drawMoia(this.xMoi, this.yMoi, options.bgColor, options.bgColor);
         }
 
         // draw the character who moves in the maze
         this.drawMoi = () => {
-            this.drawMoia(this.xMoi, this.yMoi, options.actorColor, '#ffffff');
+            this.drawMoia(this.xMoi, this.yMoi, options.actorColor, options.actorColor);
         }
 
         // calculate position x left edge of box n
@@ -336,7 +361,7 @@ class Maze {
             // draw the exit path on the right side of the maze
             this.ctx.beginPath();
             this.ctx.lineWidth = options.mazeStroke * 1.5;
-            this.ctx.strokeStyle = options.bodyColor;
+            this.ctx.strokeStyle = options.bgColor;
             this.ctx.moveTo(this.xTerrain(this.nx), this.yTerrain(this.ys));
             this.ctx.lineTo(this.xTerrain(this.nx), this.yTerrain(this.ys + 1));
             this.ctx.stroke();
@@ -476,7 +501,7 @@ class Maze {
             
             // delete to stop search at this level
             this.tbRech.pop();
-            this.drawMoia(rechCou.x, rechCou.y, options.bodyColor, options.bodyColor);
+            this.drawMoia(rechCou.x, rechCou.y, options.bgColor, options.bgColor);
         };
 
 
@@ -500,7 +525,7 @@ class Maze {
 
         this.triggerStart = false;
         this.canv = canv;
-        options.bodyColor = options.bodyColor
+        options.bgColor = options.bgColor
         this.canv.width = options.width
         this.canv.height = options.height;
         this.ctx = this.canv.getContext("2d");
@@ -574,9 +599,9 @@ class Maze {
                 if (this.move == 1 && this.xMoi == this.nx - 1 && this.yMoi == this.ys) {
                     this.triggerEvent('win');
 
-                    setTimeout(() => {
-                        alert('Congratulations ! You win !')
-                    }, 100);
+                    // setTimeout(() => {
+                    //     alert('Congratulations ! You win !')
+                    // }, 100);
                     
                 }
             };
@@ -654,6 +679,7 @@ class Maze {
         
 
     }
+    
     
     
 }   
