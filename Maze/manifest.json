@@ -1,10 +1,10 @@
 {
-  "icon": "https://ads.adctv.com/components/img/carousel.svg",
+  "icon": "https://ads.adctv.com/components/img/maze.svg",
   "name": "Adctv Maze",
   "type": "adctv-maze",
   "files": {
     "js": [
-      "https://ads.adctv.com/components/adctv-maze/adctv-maze.js"
+      "https://ads.adctv.com/scripts/components/adctv-maze/adctv-maze.js"
     ]
   },
   "events": [
@@ -88,128 +88,130 @@
   ],
   "tagName": "adctv-maze",
   "version": 1,
-  "category": "Galleries",
-  "attributes": [
-    {
-      "min": 100,
-      "name": "maze_size",
-      "type": "number",
-      "label": "Maze Size",
-      "required": true,
-      "description": "Size of the maze (width and height)",
-      "defaultValue": 500
-    },
-    {
-      "name": "maze_mazeColor",
-      "type": "color",
-      "label": "Maze Color",
-      "bindable": true,
-      "description": "Color of the maze walls",
-      "gwdSpecific": {
-        "advanced": true
+  "category": "Interaction",
+  "attributes":[
+      {
+        "min": 100,
+        "name": "maze_size",
+        "type": "number",
+        "label": "Maze Size",
+        "required": true,
+        "description": "Size of the maze (width and height)",
+        "defaultValue": 500
       },
-      "defaultValue": "#ff0000"
-    },
-    {
-      "name": "maze_bgColor",
-      "type": "color",
-      "label": "Background Color",
-      "bindable": true,
-      "description": "Color of the maze background",
-      "gwdSpecific": {
-        "advanced": true
+      {
+        "name": "maze_mazeColor",
+        "type": "color",
+        "label": "Maze Color",
+        "bindable": true,
+        "description": "Color of the maze walls",
+        "gwdSpecific": {
+          "advanced": true
+        },
+        "defaultValue": "#ff0000"
       },
-      "defaultValue": "#ffffff"
-    },
-    {
-      "min": 1,
-      "name": "maze_mazeStroke",
-      "type": "number",
-      "label": "Stroke Width",
-      "required": true,
-      "description": "Stroke width of the maze walls",
-      "defaultValue": 3
-    },
-    {
-      "name": "maze_actorColor",
-      "type": "color",
-      "label": "Actor Color",
-      "bindable": true,
-      "description": "Color of the Actor (the player)",
-      "gwdSpecific": {
-        "advanced": true
+      {
+        "name": "maze_bgColor",
+        "type": "color",
+        "label": "Background Color",
+        "bindable": true,
+        "description": "Color of the maze background",
+        "gwdSpecific": {
+          "advanced": true
+        },
+        "defaultValue": "#ffffff"
       },
-      "defaultValue": "#0000ff"
-    },
-    {
-      "min": 5,
-      "name": "maze_complexity",
-      "type": "number",
-      "label": "Complexity",
-      "required": true,
-      "description": "Complexity of the maze (higher number = more complex)",
-      "defaultValue": 10
-    },
-    {
-      "name": "maze_showPath",
-      "type": "boolean",
-      "label": "Enable Hint",
-      "required": false,
-      "description": "Show the path to the exit the maze",
-      "defaultValue": true
-    },
-    {
-      "name": "maze_trailProcessingColor",
-      "type": "color",
-      "label": "Path Finding Color",
-      "bindable": true,
-      "description": "Color of trail while path finding is in progress",
-      "gwdSpecific": {
-        "advanced": true
+      {
+        "min": 1,
+        "name": "maze_mazeStroke",
+        "type": "number",
+        "label": "Stroke Width",
+        "required": true,
+        "description": "Stroke width of the maze walls",
+        "defaultValue": 3
       },
-      "defaultValue": "#0000ff"
-    },
-    {
-      "name": "maze_trailResultColor",
-      "type": "color",
-      "label": "Correct Path Color",
-      "bindable": true,
-      "description": "Color of trail when path finding is complete",
-      "gwdSpecific": {
-        "advanced": true
+      {
+        "name": "maze_actorColor",
+        "type": "color",
+        "label": "Actor Color",
+        "bindable": true,
+        "description": "Color of the Actor (the player)",
+        "gwdSpecific": {
+          "advanced": true
+        },
+        "defaultValue": "#0000ff"
       },
-      "defaultValue": "#00ff00"
-    },
-    {
-      "name": "maze_trailShape",
-      "type": "string",
-      "label": "Trail Shape",
-      "description": "Shape of the trail that leads to the exit",
-      "gwdSpecific": {
-        "type": "dropdown",
-        "items": ["Circle", "Square"]
+      {
+        "min": 5,
+        "name": "maze_complexity",
+        "type": "number",
+        "label": "Complexity",
+        "required": true,
+        "description": "Complexity of the maze (higher number = more complex)",
+        "defaultValue": 10
       },
-      "defaultValue": "Circle"
-    },
-    {
-      "name": "maze_animation",
-      "type": "boolean",
-      "label": "Enable Animation",
-      "required": false,
-      "description": "Enable animation of the trail while path finding is in progress",
-      "defaultValue": true
-    },
-    {
-      "min": 10,
-      "name": "maze_animationDelay",
-      "type": "number",
-      "label": "Animation Delay",
-      "required": true,
-      "description": "Animation delay in milliseconds (higher number = slower animation)",
-      "defaultValue": 50
-    }
+      {
+        "name": "maze_showPath",
+        "type": "boolean",
+        "label": "Enable Hint",
+        "required": false,
+        "description": "Show the path to the exit the maze",
+        "defaultValue": true
+      },
+      {
+        "name": "maze_trailProcessingColor",
+        "type": "color",
+        "label": "Path Finding Color",
+        "bindable": true,
+        "description": "Color of trail while path finding is in progress",
+        "gwdSpecific": {
+          "advanced": true
+        },
+        "defaultValue": "#0000ff"
+      },
+      {
+        "name": "maze_trailResultColor",
+        "type": "color",
+        "label": "Correct Path Color",
+        "bindable": true,
+        "description": "Color of trail when path finding is complete",
+        "gwdSpecific": {
+          "advanced": true
+        },
+        "defaultValue": "#00ff00"
+      },
+      {
+        "name": "maze_trailShape",
+        "type": "string",
+        "label": "Trail Shape",
+        "description": "Shape of the trail that leads to the exit",
+        "gwdSpecific": {
+          "type": "dropdown",
+          "items": ["Circle", "Square"]
+        },
+        "defaultValue": "Circle"
+      },
+      {
+        "name": "maze_animation",
+        "type": "boolean",
+        "label": "Enable Animation",
+        "required": false,
+        "description": "Enable animation of the trail while path finding is in progress",
+        "defaultValue": true
+      },
+      {
+        "min": 10,
+        "name": "maze_animationDelay",
+        "type": "number",
+        "label": "Animation Delay",
+        "required": true,
+        "description": "Animation delay in milliseconds (higher number = slower animation)",
+        "defaultValue": 50
+      }
   ],
   "description": "Maze component",
-  "externalScripts": [],
+  "externalScripts": [
+    "https://ads.adctv.com/scripts/components/adctv-maze/adctv-maze.js"
+  ],
   "customElementsVersion": 1
 }
